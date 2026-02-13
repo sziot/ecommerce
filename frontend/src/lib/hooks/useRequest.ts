@@ -166,7 +166,7 @@ interface UseLazyRequestResult<T> {
   data: T | null
   loading: boolean
   error: Error | null
-  execute: (params?: Record<string, any>) => Promise<void>
+  execute: (params: { url: string; method?: string; data?: any }) => Promise<void>
 }
 
 /**

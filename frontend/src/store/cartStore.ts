@@ -54,13 +54,13 @@ export const useCartStore = create<CartState>()(
         get().fetchCart()
       },
 
-      updateCartItem: async (itemId: string, quantity: number) => {
+      updateCartItem: async (itemId: string | number, quantity: number) => {
         await api.patch(`/cart/items/${itemId}/`, { quantity })
         // Refresh cart after updating
         get().fetchCart()
       },
 
-      removeFromCart: async (itemId: string) => {
+      removeFromCart: async (itemId: string | number) => {
         await api.delete(`/cart/items/${itemId}/`)
         // Refresh cart after removing
         get().fetchCart()

@@ -1,4 +1,4 @@
-import { useMutation } from './useRequest'
+import { useMutation, useRequest } from './useRequest'
 import { useAuthStore } from '@/store/authStore'
 
 export interface LoginData {

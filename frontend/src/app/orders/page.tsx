@@ -39,7 +39,7 @@ interface Order {
   total_amount: number
   discount_amount: number
   shipping_fee: number
-  items: OrderItem
+  items: OrderItem[]
   address?: {
     receiver_name: string
     receiver_phone: string
@@ -66,7 +66,7 @@ export default function OrdersPage() {
     }
   }, [isAuthenticated, router])
 
-  const handleCancelOrder = async (orderId: string) => {
+  const handleCancelOrder = async (orderId: number) => {
     try {
       await api.post(`/orders/${orderId}/cancel/`)
       toast.success('订单已取消')

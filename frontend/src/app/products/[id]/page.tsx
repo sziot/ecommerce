@@ -31,7 +31,7 @@ export default function ProductDetailPage() {
     )
   }
 
-  const images = product.images?.length > 0 ? product.images : [{ image: product.main_image }]
+  const images = product.main_image ? [{ image: product.main_image }] : []
 
   const handleAddToCart = async () => {
     try {
@@ -78,7 +78,7 @@ export default function ProductDetailPage() {
         {/* Product Info */}
         <div>
           <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
-          <p className="text-gray-500 mb-4">{product.category?.name || ''}</p>
+          <p className="text-gray-500 mb-4">{product.category_name || ''}</p>
 
           <div className="bg-gray-50 p-4 rounded-lg mb-6">
             <div className="flex items-center gap-4">
@@ -157,22 +157,6 @@ export default function ProductDetailPage() {
             <h3 className="text-xl font-semibold mb-4">商品描述</h3>
             <p className="text-gray-600 whitespace-pre-wrap">{product.description}</p>
           </div>
-
-          {product.specifications && Object.keys(product.specifications).length > 0 && (
-            <>
-              <div className="border-t mt-6 pt-6">
-                <h3 className="text-xl font-semibold mb-4">规格参数</h3>
-                <dl className="grid grid-cols-2 gap-2">
-                  {Object.entries(product.specifications).map(([key, value]) => (
-                    <div key={key} className="flex">
-                      <dt className="text-gray-500 w-1/2">{key}：</dt>
-                      <dd className="w-1/2">{value as string}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-            </>
-          )}
         </div>
       </div>
     </div>

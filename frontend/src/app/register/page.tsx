@@ -163,7 +163,8 @@ export default function RegisterPage() {
             </div>
 
             <Button
-              type="primary"
+              type="submit"
+              variant="primary"
               fullWidth
               disabled={loading}
               className="mt-6"

@@ -3,16 +3,20 @@ import { useMutation } from './useRequest'
 import api from '../api'
 
 export interface Product {
-  id: number
+  id: string
   name: string
   description: string
-  price: number
-  category: number
-  category_name: string
-  image: string | null
+  price: string | number
+  original_price?: string | number | null
+  discount_percent: number
+  sales: number
   stock: number
-  created_at: string
-  updated_at: string
+  category: string | number
+  category_name: string
+  main_image: string
+  is_featured: boolean
+  created_at?: string
+  updated_at?: string
 }
 
 export interface ProductsResponse {

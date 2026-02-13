@@ -8,16 +8,7 @@ import { LoadingPage } from '@/components/ui/loading'
 import { EmptyState } from '@/components/ui/empty'
 import { useFeaturedProducts } from '@/lib/hooks'
 import { useEffect } from 'react'
-
-interface Product {
-  id: string | number
-  name: string
-  price: number | string
-  original_price?: number | string | null
-  main_image: string
-  discount_percent: number
-  sales: number
-}
+import { Product } from '@/types'
 
 export default function Home() {
   const { data: featuredProducts, loading, error } = useFeaturedProducts()
@@ -66,7 +57,7 @@ export default function Home() {
           </Card>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {featuredProducts.map((product: Product) => (
+            {featuredProducts.map((product) => (
               <Link key={product.id} href={`/products/${product.id}`}>
                 <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
                   <div className="relative">

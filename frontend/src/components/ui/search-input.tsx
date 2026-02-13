@@ -50,7 +50,7 @@ export function SearchInput({ placeholder = '搜索...', onSearch, className }: 
           </button>
         )}
       </div>
-      <Button type="primary" onClick={handleSearch} className="ml-2">
+      <Button type="button" variant="primary" onClick={handleSearch} className="ml-2">
         搜索
       </Button>
     </div>

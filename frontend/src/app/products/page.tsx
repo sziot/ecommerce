@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
@@ -38,7 +38,7 @@ interface ProductsResponse {
   results: Product[]
 }
 
-export default function ProductsPage() {
+function ProductsContent() {
   const searchParams = useSearchParams()
   const [page, setPage] = useState(1)
   const [search, setSearch] = useState(searchParams.get('search') || '')
@@ -111,7 +111,6 @@ export default function ProductsPage() {
             <SearchInput
               placeholder="搜索商品"
               onSearch={handleSearch}
-              defaultValue={search}
             />
           </div>
 
@@ -215,5 +214,13 @@ export default function ProductsPage() {
         </>
       )}
     </div>
+  )
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={<LoadingPage />}>
+      <ProductsContent />
+    </Suspense>
   )
 }

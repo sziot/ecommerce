@@ -21,7 +21,7 @@ export const CardHeader = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivEleme
 
 CardHeader.displayName = 'CardHeader'
 
-export const CardTitle = forwardRef<HTMLHeadingAttributes, HTMLAttributes<HTMLHeadingElement>>(
+export const CardTitle = forwardRef<HTMLHeadingElement, HTMLAttributes<HTMLHeadingElement>>(
   ({ className, ...props }, ref) => (
     <h3
       ref={ref}

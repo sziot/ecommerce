@@ -1,6 +1,6 @@
 'use client'
 
-import { HTMLAttributes, createContext, useContext, useState, useRef, useEffect } from 'react'
+import { HTMLAttributes, createContext, useContext, useState, useRef, useEffect, cloneElement, ReactElement } from 'react'
 import { cn } from '@/lib/utils/cn'
 
 interface DropdownContextValue {
@@ -101,9 +101,10 @@ export function DropdownContent({ className, children, align = 'end', ...props }
 
 export interface DropdownItemProps extends HTMLAttributes<HTMLDivElement> {
   onClick?: () => void
+  asChild?: boolean
 }
 
-export function DropdownItem({ className, children, onClick, ...props }: DropdownItemProps) {
+export function DropdownItem({ className, children, onClick, asChild = false, ...props }: DropdownItemProps) {
   const { setIsOpen } = useDropdown()
 
   const handleClick = () => {
@@ -111,13 +112,24 @@ export function DropdownItem({ className, children, onClick, ...props }: Dropdow
     setIsOpen(false)
   }
 
+  const baseClassName = cn(
+    'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer',
+    className
+  )
+
+  if (asChild) {
+    const child = children as ReactElement
+    return cloneElement(child, {
+      className: cn(baseClassName, child.props.className),
+      onClick: handleClick,
+      ...props,
+    })
+  }
+
   return (
     <div
       onClick={handleClick}
-      className={cn(
-        'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer',
-        className
-      )}
+      className={baseClassName}
       {...props}
     >
       {children}
