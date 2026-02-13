@@ -1,0 +1,12 @@
+Django==4.2.11
+djangorestframework==3.14.0
+djangorestframework-simplejwt==5.3.1
+django-cors-headers==4.3.1
+psycopg2-binary==2.9.9
+redis==5.0.1
+celery==5.3.6
+django-mptt==0.16.0
+Pillow>=10.4.0
+python-decouple==3.8
+Faker>=22.0.0
+django-filter==23.5
