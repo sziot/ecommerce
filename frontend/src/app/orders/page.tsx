@@ -93,7 +93,9 @@ export default function OrdersPage() {
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-6">我的订单</h1>
 
-      {orders?.length === 0 ? (
+      {orders === null ? (
+        <LoadingPage />
+      ) : orders.length === 0 ? (
         <Card>
           <CardContent className="p-12">
             <EmptyState title="暂无订单" description="您还没有订单" />
@@ -101,7 +103,7 @@ export default function OrdersPage() {
         </Card>
       ) : (
         <div className="space-y-4">
-          {orders?.map((order: Order) => {
+          {orders.map((order: Order) => {
             const status = statusConfig[order.status]
             return (
               <Card key={order.id}>
@@ -145,6 +147,15 @@ export default function OrdersPage() {
                       </span>
                     </div>
                     <div className="flex gap-2">
+                      {order.status === 'pending' && (
+                        <Button
+                          variant="primary"
+                          size="sm"
+                          onClick={() => router.push(`/payment?order_id=${order.id}`)}
+                        >
+                          去支付
+                        </Button>
+                      )}
                       <Button variant="default" size="sm" onClick={() => showOrderDetail(order)}>
                         <Eye className="w-4 h-4 mr-1" />
                         查看详情

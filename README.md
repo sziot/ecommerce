@@ -181,34 +181,6 @@ ecommerce/
 └── Makefile               # 开发命令
 ```
 
-## 可用命令
-
-```bash
-# 安装依赖
-make install
-
-# 启动开发环境
-make dev
-
-# 初始化数据库和数据
-make init-db
-
-# 仅启动后端
-make dev-backend
-
-# 仅启动前端
-make dev-frontend
-
-# 运行测试
-make test
-
-# 构建生产版本
-make build
-
-# 查看日志
-make logs
-```
-
 ## 注意事项
 
 1. 本项目为 MVP 版本，适用于学习和演示

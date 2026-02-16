@@ -67,9 +67,10 @@ function ProductsContent() {
   const count = productsData?.count || 0
 
   // Flatten categories for Select
-  const flattenCategories = (cats: Category[]): Category[] => {
+  const flattenCategories = (cats: Category[] | null | undefined): Category[] => {
+    if (!cats || !Array.isArray(cats)) return []
     let result: Category[] = []
-    cats.forEach((cat) => {
+    ;(cats as Category[]).forEach((cat) => {
       result.push(cat)
       if (cat.children) {
         result = result.concat(flattenCategories(cat.children))
