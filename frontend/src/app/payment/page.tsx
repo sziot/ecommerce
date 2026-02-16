@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { CreditCard, Smartphone, CheckCircle, Loader2, ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -29,7 +29,7 @@ interface OrderDetail {
   }>
 }
 
-export default function PaymentPage() {
+function PaymentContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const orderId = searchParams.get('order_id')
@@ -215,5 +215,13 @@ export default function PaymentPage() {
         </Card>
       </div>
     </div>
+  )
+}
+
+export default function PaymentPage() {
+  return (
+    <Suspense fallback={<LoadingPage />}>
+      <PaymentContent />
+    </Suspense>
   )
 }
