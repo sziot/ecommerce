@@ -12,8 +12,6 @@ venv/
 
 # 构建输出
 # dist
-!standalone/.next/
-!standalone/node_modules/
 dist-ssr
 *.local
 
